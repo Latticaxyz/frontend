@@ -1,5 +1,5 @@
 {
-  "name": "lattica-frontend",
+  "name": "@lattica/frontend",
   "private": true,
   "scripts": {
     "build": "turbo run build",
