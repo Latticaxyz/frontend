@@ -1,21 +1,13 @@
 version: 2
 updates:
-  # PNPM workspace
+  # pnpm
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 20
     labels: ["dependencies"]
     groups:
       npm-minor-patch:
         update-types: ["minor", "patch"]
         patterns: ["*"]
-
-  # GitHub Actions
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 10
-    labels: ["dependencies", "github-actions"]
