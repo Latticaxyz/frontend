@@ -17,7 +17,7 @@
     "neonctl": "catalog:",
     "prettier": "catalog:",
     "rimraf": "catalog:",
-    "turbo": "^2.7.2"
+    "turbo": "^2.7.4"
   },
   "packageManager": "pnpm@10.20.0",
   "engines": {
