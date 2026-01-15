@@ -31,7 +31,7 @@ catalog:
   eslint-plugin-react: ^7.37.5
   eslint-plugin-react-hooks: ^7.0.1
   eslint-plugin-turbo: ^2.7.4
-  globals: ^16.5.0
+  globals: ^17.0.0
   hono: ^4.9.12
   husky: 9.1.7
   jsdom: ^27.4.0
