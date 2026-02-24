@@ -1,13 +1,58 @@
+# Dependencies
 node_modules
-.DS_Store
-dist
-dist-ssr
-*.local
+.pnp
+.pnp.js
+
+# Local env files
 .env
-.nitro
-.tanstack
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+env.*
+
+# Testing
+coverage
+
+# Wrangler
 .wrangler
-.output
+
+# vinxi
 .vinxi
-__unconfig*
-todos.json
+
+# Tanstack
+.tanstack
+
+# Nitro
+.nitro
+
+# Foundry
+cache
+
+# Build Outputs
+out/
+build
+dist
+
+# TS
+*.tsbuildinfo
+next-env.d.ts
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Soldeer/Solidity
+dependencies
+soljson-*.js
+
+# Misc
+.DS_Store
+*.pem
+
+#Claude
+.claude/
+CLAUDE.md
+digest.txt
