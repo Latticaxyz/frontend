@@ -4,8 +4,7 @@
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch"],
-      "groupName": "minor and patch dependencies",
-      "automerge": true
+      "groupName": "minor and patch dependencies"
     }
   ]
 }
