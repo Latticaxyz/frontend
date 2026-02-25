@@ -14,6 +14,13 @@ export interface Vault {
 	collateralTokens: Token[];
 }
 
+export interface User {
+	id: number;
+	name: string;
+	email: string;
+	createdAt: string | null;
+}
+
 export interface Market {
 	id: string;
 	loanAsset: Token;

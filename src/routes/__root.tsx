@@ -4,6 +4,7 @@ import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
+import { useAuthUser } from "@/hooks/useAuthUser";
 
 import "../styles.css";
 
@@ -13,6 +14,7 @@ export const Route = createRootRoute({
 
 function RootComponent() {
 	const { ready, authenticated, login } = usePrivy();
+	const { isLoading: isUserSyncing } = useAuthUser();
 
 	useEffect(() => {
 		if (ready && !authenticated) {
@@ -20,13 +22,13 @@ function RootComponent() {
 		}
 	}, [ready, authenticated, login]);
 
-	if (!ready) {
+	if (!ready || !authenticated) {
 		return (
 			<div className="flex min-h-screen items-center justify-center bg-background" />
 		);
 	}
 
-	if (!authenticated) {
+	if (isUserSyncing) {
 		return (
 			<div className="flex min-h-screen items-center justify-center bg-background" />
 		);
