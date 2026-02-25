@@ -1,3 +1,4 @@
+import { PrivyProvider } from "@privy-io/react-auth";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import ReactDOM from "react-dom/client";
 import { routeTree } from "./routeTree.gen";
@@ -18,5 +19,17 @@ const rootElement = document.getElementById("app");
 
 if (rootElement && !rootElement.innerHTML) {
 	const root = ReactDOM.createRoot(rootElement);
-	root.render(<RouterProvider router={router} />);
+	root.render(
+		<PrivyProvider
+			appId={import.meta.env.VITE_PRIVY_APP_ID}
+			config={{
+				appearance: {
+					theme: "dark",
+				},
+				loginMethods: ["email", "google", "twitter"],
+			}}
+		>
+			<RouterProvider router={router} />
+		</PrivyProvider>,
+	);
 }

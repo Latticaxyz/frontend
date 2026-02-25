@@ -1,6 +1,8 @@
+import { usePrivy } from "@privy-io/react-auth";
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 
 import "../styles.css";
@@ -10,6 +12,26 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
+	const { ready, authenticated, login } = usePrivy();
+
+	useEffect(() => {
+		if (ready && !authenticated) {
+			login();
+		}
+	}, [ready, authenticated, login]);
+
+	if (!ready) {
+		return (
+			<div className="flex min-h-screen items-center justify-center bg-background" />
+		);
+	}
+
+	if (!authenticated) {
+		return (
+			<div className="flex min-h-screen items-center justify-center bg-background" />
+		);
+	}
+
 	return (
 		<div className="min-h-screen bg-background">
 			<Navbar />

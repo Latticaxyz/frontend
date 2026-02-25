@@ -6,7 +6,7 @@
 
 body {
   @apply m-0;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -54,7 +54,7 @@ body {
   --color-positive: #39a699;
   --color-negative: #e5484d;
   --color-warning: #f0a224;
-  --color-surface-elevated: #222529;
+  --color-surface-elevated: #262626;
   --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
   --shadow-md: 0 2px 8px rgba(0,0,0,0.25);
   --shadow-lg: 0 4px 16px rgba(0,0,0,0.3);
@@ -97,34 +97,34 @@ body {
 
 .dark {
   --radius: 1.25rem;
-  --background: #111315;
+  --background: #181818;
   --foreground: #edeef0;
-  --card: #1a1d21;
+  --card: #1e1e1e;
   --card-foreground: #edeef0;
-  --popover: #222529;
+  --popover: #262626;
   --popover-foreground: #edeef0;
   --primary: #2973ff;
   --primary-foreground: #ffffff;
-  --secondary: #1e2024;
+  --secondary: #222222;
   --secondary-foreground: #b0b4ba;
-  --muted: #1e2024;
+  --muted: #222222;
   --muted-foreground: #6b7076;
-  --accent: #242729;
+  --accent: #2a2a2a;
   --accent-foreground: #edeef0;
   --destructive: #e5484d;
   --border: #ffffff12;
-  --input: #1e2024;
+  --input: #222222;
   --ring: #2973ff;
   --chart-1: #2973ff;
   --chart-2: #39a699;
   --chart-3: #f0a224;
   --chart-4: #a855f7;
   --chart-5: #ef4444;
-  --sidebar: #151719;
+  --sidebar: #1a1a1a;
   --sidebar-foreground: #edeef0;
   --sidebar-primary: #2973ff;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #242729;
+  --sidebar-accent: #2a2a2a;
   --sidebar-accent-foreground: #edeef0;
   --sidebar-border: #ffffff12;
   --sidebar-ring: #2973ff;
