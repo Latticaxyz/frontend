@@ -4,9 +4,6 @@
   "private": true,
   "type": "module",
   "packageManager": "pnpm@10.30.2",
-  "imports": {
-    "#/*": "./src/*"
-  },
   "scripts": {
     "dev": "vite dev --port 3000",
     "build": "vite build",
