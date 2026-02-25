@@ -5,9 +5,9 @@
   "type": "module",
   "packageManager": "pnpm@10.30.2",
   "scripts": {
-    "dev": "vite dev --port 3000",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "infisical run -- vite dev --port 3000",
+    "build": "infisical run -- vite build",
+    "preview": "infisical run -- vite preview",
     "test": "vitest run",
     "format": "biome format",
     "lint": "biome lint",
@@ -15,6 +15,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@privy-io/react-auth": "^3.14.1",
     "@tailwindcss/vite": "^4.2.1",
     "@tanstack/react-devtools": "^0.9.0",
     "@tanstack/react-query": "^5.90.21",
