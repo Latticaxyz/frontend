@@ -31,8 +31,11 @@ export function Navbar() {
 		<header className="sticky top-0 z-50 h-16 border-b border-border bg-card/95 backdrop-blur-md">
 			<nav className="flex h-full items-center justify-between px-6 md:px-8">
 				<div className="flex items-center gap-6">
-					<Link to="/earn" className="text-xl font-semibold tracking-tight">
-						Lattica
+					<Link to="/earn" className="flex items-center gap-2.5">
+						<img src="/logo.svg" alt="Lattica" className="h-7 w-7" />
+						<span className="text-xl font-semibold tracking-tight">
+							Lattica
+						</span>
 					</Link>
 
 					<div className="hidden md:block h-5 w-px bg-white/[0.08]" />
