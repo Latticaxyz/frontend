@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { NetworkSelector } from "@/components/NetworkSelector";
 import { WalletButton } from "@/components/WalletButton";
 
 const NAV_LINKS = [
@@ -47,7 +46,6 @@ export function Navbar() {
 				</div>
 
 				<div className="flex items-center gap-3">
-					<NetworkSelector />
 					<WalletButton />
 
 					<button
