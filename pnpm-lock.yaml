@@ -28,7 +28,7 @@ importers:
         version: 1.163.3(@tanstack/react-router@1.163.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(@tanstack/router-core@1.163.3)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@tanstack/router-plugin':
         specifier: ^1.162.9
-        version: 1.163.3(@tanstack/react-router@1.163.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@24.11.0)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.2))
+        version: 1.164.0(@tanstack/react-router@1.163.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@24.11.0)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.2))
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -36,8 +36,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       lucide-react:
-        specifier: ^0.575.0
-        version: 0.575.0(react@19.2.4)
+        specifier: ^0.576.0
+        version: 0.576.0(react@19.2.4)
       radix-ui:
         specifier: ^1.4.3
         version: 1.4.3(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -55,8 +55,8 @@ importers:
         version: 4.2.1
     devDependencies:
       '@biomejs/biome':
-        specifier: 2.4.4
-        version: 2.4.4
+        specifier: 2.4.5
+        version: 2.4.5
       '@tanstack/devtools-vite':
         specifier: ^0.5.0
         version: 0.5.2(bufferutil@4.1.0)(utf-8-validate@5.0.10)(vite@7.3.1(@types/node@24.11.0)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.2))
@@ -89,7 +89,7 @@ importers:
         version: 28.1.0(@noble/hashes@1.8.0)
       lint-staged:
         specifier: ^16.2.7
-        version: 16.3.0
+        version: 16.3.1
       shadcn:
         specifier: ^3.8.5
         version: 3.8.5(@types/node@24.11.0)(typescript@5.9.3)
@@ -282,59 +282,59 @@ packages:
   '@base-org/account@2.4.0':
     resolution: {integrity: sha512-A4Umpi8B9/pqR78D1Yoze4xHyQaujioVRqqO3d6xuDFw9VRtjg6tK3bPlwE0aW+nVH/ntllCpPa2PbI8Rnjcug==}
 
-  '@biomejs/biome@2.4.4':
-    resolution: {integrity: sha512-tigwWS5KfJf0cABVd52NVaXyAVv4qpUXOWJ1rxFL8xF1RVoeS2q/LK+FHgYoKMclJCuRoCWAPy1IXaN9/mS61Q==}
+  '@biomejs/biome@2.4.5':
+    resolution: {integrity: sha512-OWNCyMS0Q011R6YifXNOg6qsOg64IVc7XX6SqGsrGszPbkVCoaO7Sr/lISFnXZ9hjQhDewwZ40789QmrG0GYgQ==}
     engines: {node: '>=14.21.3'}
     hasBin: true
 
-  '@biomejs/cli-darwin-arm64@2.4.4':
-    resolution: {integrity: sha512-jZ+Xc6qvD6tTH5jM6eKX44dcbyNqJHssfl2nnwT6vma6B1sj7ZLTGIk6N5QwVBs5xGN52r3trk5fgd3sQ9We9A==}
+  '@biomejs/cli-darwin-arm64@2.4.5':
+    resolution: {integrity: sha512-lGS4Nd5O3KQJ6TeWv10mElnx1phERhBxqGP/IKq0SvZl78kcWDFMaTtVK+w3v3lusRFxJY78n07PbKplirsU5g==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [darwin]
 
-  '@biomejs/cli-darwin-x64@2.4.4':
-    resolution: {integrity: sha512-Dh1a/+W+SUCXhEdL7TiX3ArPTFCQKJTI1mGncZNWfO+6suk+gYA4lNyJcBB+pwvF49uw0pEbUS49BgYOY4hzUg==}
+  '@biomejs/cli-darwin-x64@2.4.5':
+    resolution: {integrity: sha512-6MoH4tyISIBNkZ2Q5T1R7dLd5BsITb2yhhhrU9jHZxnNSNMWl+s2Mxu7NBF8Y3a7JJcqq9nsk8i637z4gqkJxQ==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [darwin]
 
-  '@biomejs/cli-linux-arm64-musl@2.4.4':
-    resolution: {integrity: sha512-+sPAXq3bxmFwhVFJnSwkSF5Rw2ZAJMH3MF6C9IveAEOdSpgajPhoQhbbAK12SehN9j2QrHpk4J/cHsa/HqWaYQ==}
+  '@biomejs/cli-linux-arm64-musl@2.4.5':
+    resolution: {integrity: sha512-iqLDgpzobG7gpBF0fwEVS/LT8kmN7+S0E2YKFDtqliJfzNLnAiV2Nnyb+ehCDCJgAZBASkYHR2o60VQWikpqIg==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@biomejs/cli-linux-arm64@2.4.4':
-    resolution: {integrity: sha512-V/NFfbWhsUU6w+m5WYbBenlEAz8eYnSqRMDMAW3K+3v0tYVkNyZn8VU0XPxk/lOqNXLSCCrV7FmV/u3SjCBShg==}
+  '@biomejs/cli-linux-arm64@2.4.5':
+    resolution: {integrity: sha512-U1GAG6FTjhAO04MyH4xn23wRNBkT6H7NentHh+8UxD6ShXKBm5SY4RedKJzkUThANxb9rUKIPc7B8ew9Xo/cWg==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@biomejs/cli-linux-x64-musl@2.4.4':
-    resolution: {integrity: sha512-gGvFTGpOIQDb5CQ2VC0n9Z2UEqlP46c4aNgHmAMytYieTGEcfqhfCFnhs6xjt0S3igE6q5GLuIXtdQt3Izok+g==}
+  '@biomejs/cli-linux-x64-musl@2.4.5':
+    resolution: {integrity: sha512-NlKa7GpbQmNhZf9kakQeddqZyT7itN7jjWdakELeXyTU3pg/83fTysRRDPJD0akTfKDl6vZYNT9Zqn4MYZVBOA==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@biomejs/cli-linux-x64@2.4.4':
-    resolution: {integrity: sha512-R4+ZCDtG9kHArasyBO+UBD6jr/FcFCTH8QkNTOCu0pRJzCWyWC4EtZa2AmUZB5h3e0jD7bRV2KvrENcf8rndBg==}
+  '@biomejs/cli-linux-x64@2.4.5':
+    resolution: {integrity: sha512-NdODlSugMzTlENPTa4z0xB82dTUlCpsrOxc43///aNkTLblIYH4XpYflBbf5ySlQuP8AA4AZd1qXhV07IdrHdQ==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@biomejs/cli-win32-arm64@2.4.4':
-    resolution: {integrity: sha512-trzCqM7x+Gn832zZHgr28JoYagQNX4CZkUZhMUac2YxvvyDRLJDrb5m9IA7CaZLlX6lTQmADVfLEKP1et1Ma4Q==}
+  '@biomejs/cli-win32-arm64@2.4.5':
+    resolution: {integrity: sha512-EBfrTqRIWOFSd7CQb/0ttjHMR88zm3hGravnDwUA9wHAaCAYsULKDebWcN5RmrEo1KBtl/gDVJMrFjNR0pdGUw==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [win32]
 
-  '@biomejs/cli-win32-x64@2.4.4':
-    resolution: {integrity: sha512-gnOHKVPFAAPrpoPt2t+Q6FZ7RPry/FDV3GcpU53P3PtLNnQjBmKyN2Vh/JtqXet+H4pme8CC76rScwdjDcT1/A==}
+  '@biomejs/cli-win32-x64@2.4.5':
+    resolution: {integrity: sha512-Pmhv9zT95YzECfjEHNl3mN9Vhusw9VA5KHY0ZvlGsxsjwS5cb7vpRnHzJIv0vG7jB0JI7xEaMH9ddfZm/RozBw==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
@@ -2547,12 +2547,12 @@ packages:
       csstype:
         optional: true
 
-  '@tanstack/router-generator@1.163.3':
-    resolution: {integrity: sha512-i2rWRtqY/yCYUDXva1li4zeDP20oFjMt/wh9RnGJCrKSLWrvEGnxAOSyXgiOsoJnU96TTQ0mUDbGfXsSTupeZQ==}
+  '@tanstack/router-generator@1.164.0':
+    resolution: {integrity: sha512-Uiyj+RtW0kdeqEd8NEd3Np1Z2nhJ2xgLS8U+5mTvFrm/s3xkM2LYjJHoLzc6am7sKPDsmeF9a4/NYq3R7ZJP0Q==}
     engines: {node: '>=20.19'}
 
-  '@tanstack/router-plugin@1.163.3':
-    resolution: {integrity: sha512-JOUYuUX2N9ZHnmkmvmiGzXGbkvrur/5BfW/+vpiZzuifSyvdc0XsfwkTpjvwWx9ymp4ZshSVKiQQKQi09YweIw==}
+  '@tanstack/router-plugin@1.164.0':
+    resolution: {integrity: sha512-cZPsEMhqzyzmuPuDbsTAzBZaT+cj0pGjwdhjxJfPCM06Ax8v4tFR7n/Ug0UCwnNAUEmKZWN3lA9uT+TxXnk9PQ==}
     engines: {node: '>=20.19'}
     peerDependencies:
       '@rsbuild/core': '>=1.0.2'
@@ -3164,8 +3164,8 @@ packages:
     resolution: {integrity: sha512-ywqV+5MmyL4E7ybXgKys4DugZbX0FC6LnwrhjuykIjnK9k8OQacQ7axGKnjDXWNhns0xot3bZI5h55H8yo9cJg==}
     engines: {node: '>=6'}
 
-  cli-truncate@5.1.1:
-    resolution: {integrity: sha512-SroPvNHxUnk+vIW/dOSfNqdy1sPEFkrTk6TUtqLCnBlo3N7TNYYkzzN7uSD6+jVjrdO4+p8nH7JzH6cIvUem6A==}
+  cli-truncate@5.2.0:
+    resolution: {integrity: sha512-xRwvIOMGrfOAnM1JYtqQImuaNtDEv9v6oIYAs4LIHwTiKee8uwvIi363igssOC0O5U04i4AlENs79LQLu9tEMw==}
     engines: {node: '>=20'}
 
   cli-width@4.1.0:
@@ -4211,8 +4211,8 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  lint-staged@16.3.0:
-    resolution: {integrity: sha512-YVHHy/p6U4/No9Af+35JLh3umJ9dPQnGTvNCbfO/T5fC60us0jFnc+vw33cqveI+kqxIFJQakcMVTO2KM+653A==}
+  lint-staged@16.3.1:
+    resolution: {integrity: sha512-bqvvquXzFBAlSbluugR4KXAe4XnO/QZcKVszpkBtqLWa2KEiVy8n6Xp38OeUbv/gOJOX4Vo9u5pFt/ADvbm42Q==}
     engines: {node: '>=20.17'}
     hasBin: true
 
@@ -4256,8 +4256,8 @@ packages:
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
-  lucide-react@0.575.0:
-    resolution: {integrity: sha512-VuXgKZrk0uiDlWjGGXmKV6MSk9Yy4l10qgVvzGn2AWBx1Ylt0iBexKOAoA6I7JO3m+M9oeovJd3yYENfkUbOeg==}
+  lucide-react@0.576.0:
+    resolution: {integrity: sha512-koNxU14BXrxUfZQ9cUaP0ES1uyPZKYDjk31FQZB6dQ/x+tXk979sVAn9ppZ/pVeJJyOxVM8j1E+8QEuSc02Vug==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -4361,10 +4361,6 @@ packages:
   mute-stream@2.0.0:
     resolution: {integrity: sha512-WWdIxpyjEn+FhQJQQv9aQAYlHoNVdzIzUySNV1gHUPDSdZJ3yZn7pAAbQcV7B56Mvu881q9FZV+0Vx2xC44VWA==}
     engines: {node: ^18.17.0 || >=20.5.0}
-
-  nano-spawn@2.0.0:
-    resolution: {integrity: sha512-tacvGzUY5o2D8CBh2rrwxyNojUsZNU2zjNTzKQrkgGJQTbGAfArVWXSKMBokBeeg6C7OLRGUEyoFlYbfeWQIqw==}
-    engines: {node: '>=20.17'}
 
   nanoid@3.3.11:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
@@ -5069,6 +5065,10 @@ packages:
   slice-ansi@7.1.2:
     resolution: {integrity: sha512-iOBWFgUX7caIZiuutICxVgX1SdxwAVFFKwt1EvMYYec/NWO5meOJ6K5uQxhrYBdQJne4KxiqZc+KptFOWFSI9w==}
     engines: {node: '>=18'}
+
+  slice-ansi@8.0.0:
+    resolution: {integrity: sha512-stxByr12oeeOyY2BlviTNQlYV5xOj47GirPr4yA1hE9JCtxfQN0+tVbkxwCtYDQWhEKWFHsEK48ORg5jrouCAg==}
+    engines: {node: '>=20'}
 
   slow-redact@0.3.2:
     resolution: {integrity: sha512-MseHyi2+E/hBRqdOi5COy6wZ7j7DxXRz9NkseavNYSvvWC06D8a5cidVZX3tcG5eCW3NIyVU4zT63hw0Q486jw==}
@@ -6180,39 +6180,39 @@ snapshots:
       - utf-8-validate
       - zod
 
-  '@biomejs/biome@2.4.4':
+  '@biomejs/biome@2.4.5':
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 2.4.4
-      '@biomejs/cli-darwin-x64': 2.4.4
-      '@biomejs/cli-linux-arm64': 2.4.4
-      '@biomejs/cli-linux-arm64-musl': 2.4.4
-      '@biomejs/cli-linux-x64': 2.4.4
-      '@biomejs/cli-linux-x64-musl': 2.4.4
-      '@biomejs/cli-win32-arm64': 2.4.4
-      '@biomejs/cli-win32-x64': 2.4.4
+      '@biomejs/cli-darwin-arm64': 2.4.5
+      '@biomejs/cli-darwin-x64': 2.4.5
+      '@biomejs/cli-linux-arm64': 2.4.5
+      '@biomejs/cli-linux-arm64-musl': 2.4.5
+      '@biomejs/cli-linux-x64': 2.4.5
+      '@biomejs/cli-linux-x64-musl': 2.4.5
+      '@biomejs/cli-win32-arm64': 2.4.5
+      '@biomejs/cli-win32-x64': 2.4.5
 
-  '@biomejs/cli-darwin-arm64@2.4.4':
+  '@biomejs/cli-darwin-arm64@2.4.5':
     optional: true
 
-  '@biomejs/cli-darwin-x64@2.4.4':
+  '@biomejs/cli-darwin-x64@2.4.5':
     optional: true
 
-  '@biomejs/cli-linux-arm64-musl@2.4.4':
+  '@biomejs/cli-linux-arm64-musl@2.4.5':
     optional: true
 
-  '@biomejs/cli-linux-arm64@2.4.4':
+  '@biomejs/cli-linux-arm64@2.4.5':
     optional: true
 
-  '@biomejs/cli-linux-x64-musl@2.4.4':
+  '@biomejs/cli-linux-x64-musl@2.4.5':
     optional: true
 
-  '@biomejs/cli-linux-x64@2.4.4':
+  '@biomejs/cli-linux-x64@2.4.5':
     optional: true
 
-  '@biomejs/cli-win32-arm64@2.4.4':
+  '@biomejs/cli-win32-arm64@2.4.5':
     optional: true
 
-  '@biomejs/cli-win32-x64@2.4.4':
+  '@biomejs/cli-win32-x64@2.4.5':
     optional: true
 
   '@bramus/specificity@2.4.2':
@@ -8905,7 +8905,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.28.6
       '@noble/curves': 1.9.7
-      '@noble/hashes': 1.4.0
+      '@noble/hashes': 1.8.0
       '@solana/buffer-layout': 4.0.1
       '@solana/codecs-numbers': 2.3.0(typescript@5.9.3)
       agentkeepalive: 4.6.0
@@ -9163,7 +9163,7 @@ snapshots:
     optionalDependencies:
       csstype: 3.2.3
 
-  '@tanstack/router-generator@1.163.3':
+  '@tanstack/router-generator@1.164.0':
     dependencies:
       '@tanstack/router-core': 1.163.3
       '@tanstack/router-utils': 1.161.4
@@ -9176,7 +9176,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/router-plugin@1.163.3(@tanstack/react-router@1.163.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@24.11.0)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.2))':
+  '@tanstack/router-plugin@1.164.0(@tanstack/react-router@1.163.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@24.11.0)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.2))':
     dependencies:
       '@babel/core': 7.29.0
       '@babel/plugin-syntax-jsx': 7.28.6(@babel/core@7.29.0)
@@ -9185,7 +9185,7 @@ snapshots:
       '@babel/traverse': 7.29.0
       '@babel/types': 7.29.0
       '@tanstack/router-core': 1.163.3
-      '@tanstack/router-generator': 1.163.3
+      '@tanstack/router-generator': 1.164.0
       '@tanstack/router-utils': 1.161.4
       '@tanstack/virtual-file-routes': 1.161.4
       chokidar: 3.6.0
@@ -10701,9 +10701,9 @@ snapshots:
 
   cli-spinners@2.9.2: {}
 
-  cli-truncate@5.1.1:
+  cli-truncate@5.2.0:
     dependencies:
-      slice-ansi: 7.1.2
+      slice-ansi: 8.0.0
       string-width: 8.2.0
 
   cli-width@4.1.0: {}
@@ -11160,7 +11160,7 @@ snapshots:
 
   extension-port-stream@3.0.0:
     dependencies:
-      readable-stream: 3.6.2
+      readable-stream: 4.7.0
       webextension-polyfill: 0.10.0
 
   eyes@0.1.8: {}
@@ -11681,19 +11681,18 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
-  lint-staged@16.3.0:
+  lint-staged@16.3.1:
     dependencies:
       commander: 14.0.3
       listr2: 9.0.5
       micromatch: 4.0.8
-      nano-spawn: 2.0.0
       string-argv: 0.3.2
       tinyexec: 1.0.2
       yaml: 2.8.2
 
   listr2@9.0.5:
     dependencies:
-      cli-truncate: 5.1.1
+      cli-truncate: 5.2.0
       colorette: 2.0.20
       eventemitter3: 5.0.4
       log-update: 6.1.0
@@ -11745,7 +11744,7 @@ snapshots:
     dependencies:
       react: 19.2.4
 
-  lucide-react@0.575.0(react@19.2.4):
+  lucide-react@0.576.0(react@19.2.4):
     dependencies:
       react: 19.2.4
 
@@ -11838,8 +11837,6 @@ snapshots:
   multiformats@9.9.0: {}
 
   mute-stream@2.0.0: {}
-
-  nano-spawn@2.0.0: {}
 
   nanoid@3.3.11: {}
 
@@ -12706,6 +12703,11 @@ snapshots:
   sisteransi@1.0.5: {}
 
   slice-ansi@7.1.2:
+    dependencies:
+      ansi-styles: 6.2.3
+      is-fullwidth-code-point: 5.1.0
+
+  slice-ansi@8.0.0:
     dependencies:
       ansi-styles: 6.2.3
       is-fullwidth-code-point: 5.1.0
