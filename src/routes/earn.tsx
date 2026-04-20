@@ -1,184 +1,233 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Info } from "lucide-react";
+import { useState } from "react";
+import { useConnection, useSendTransaction } from "wagmi";
 import {
-	ArrowDown,
-	ChevronDown,
-	Expand,
-	Info,
-	Search,
-	Settings,
-	SlidersHorizontal,
-} from "lucide-react";
-import { useMemo, useState } from "react";
-import { CoinIcon } from "@/components/CoinIcon";
-import { ValueChip } from "@/components/ValueChip";
-import { VAULTS } from "@/data/placeholder";
-import type { Vault } from "@/types";
+	useApprovalStatus,
+	useLenderBalance,
+	usePool,
+	usePrepareApproval,
+	usePrepareDeposit,
+	usePrepareWithdraw,
+} from "@/hooks/useApi";
+import { useAuth } from "@/providers/AuthProvider";
 
 export const Route = createFileRoute("/earn")({
 	component: EarnPage,
 });
 
-const COLUMN_CLASS =
-	"grid grid-cols-[minmax(260px,1.6fr)_minmax(160px,1fr)_minmax(200px,1.1fr)_minmax(120px,0.7fr)_minmax(160px,1fr)] gap-6 items-center";
+function formatUsdc(raw: string): string {
+	const n = Number(raw) / 1e6;
+	if (n >= 1e9) return `$${(n / 1e9).toFixed(2)}B`;
+	if (n >= 1e6) return `$${(n / 1e6).toFixed(2)}M`;
+	if (n >= 1e3) return `$${(n / 1e3).toFixed(1)}K`;
+	return `$${n.toFixed(2)}`;
+}
 
-function VaultRow({ vault }: { vault: Vault }) {
+function formatBps(raw: string): string {
+	return `${(Number(raw) / 100).toFixed(2)}%`;
+}
+
+function formatUtil(raw: string): string {
+	return `${(Number(raw) / 100).toFixed(1)}%`;
+}
+
+function StatCard({
+	label,
+	value,
+	sub,
+}: {
+	label: string;
+	value: string;
+	sub?: string;
+}) {
 	return (
-		<div
-			className={`${COLUMN_CLASS} border-t border-white/[0.04] px-8 py-5 text-[14px] transition-colors hover:bg-white/[0.02]`}
-		>
-			<div className="flex items-center gap-3">
-				<CoinIcon token={vault.asset} size="lg" />
-				<div className="flex flex-col leading-tight">
-					<span className="font-semibold text-foreground">{vault.name}</span>
-					<span className="text-[12px] text-muted-foreground">
-						{vault.asset.symbol}
-					</span>
-				</div>
-			</div>
-
-			<div className="font-medium text-foreground/90">{vault.curator}</div>
-
-			<div className="flex flex-col gap-1">
-				<span className="font-semibold text-foreground">
-					{vault.totalSupply}
+		<div className="flex flex-col gap-1.5 rounded-[20px] border border-white/6 bg-[#141415] p-5">
+			<div className="flex items-center gap-1.5">
+				<span className="text-[13px] font-medium text-muted-foreground">
+					{label}
 				</span>
-				<ValueChip>{vault.asset.symbol}</ValueChip>
+				<Info className="size-3.5 text-muted-foreground/50" />
 			</div>
-
-			<div className="font-semibold text-positive">{vault.apy.toFixed(2)}%</div>
-
-			<div className="flex -space-x-1.5">
-				{vault.collateralTokens.map((token) => (
-					<CoinIcon key={token.symbol} token={token} size="md" />
-				))}
-			</div>
+			<span className="text-[28px] font-semibold tracking-tight text-foreground">
+				{value}
+			</span>
+			{sub && <span className="text-[12px] text-muted-foreground">{sub}</span>}
 		</div>
 	);
 }
 
-function HeaderCell({
-	label,
-	sortable = false,
-}: {
-	label: string;
-	sortable?: boolean;
-}) {
-	return (
-		<button
-			type="button"
-			className="inline-flex items-center gap-1.5 text-[12px] font-medium uppercase tracking-wider text-muted-foreground/70 transition-colors hover:text-foreground"
-		>
-			{label}
-			{sortable && <ArrowDown className="size-3" />}
-		</button>
-	);
-}
-
 function EarnPage() {
-	const [search, setSearch] = useState("");
-	const [inWallet, setInWallet] = useState(false);
+	const { token } = useAuth();
+	const { isConnected } = useConnection();
+	const sendTx = useSendTransaction();
 
-	const filtered = useMemo(() => {
-		if (!search) return VAULTS;
-		const q = search.toLowerCase();
-		return VAULTS.filter(
-			(v) =>
-				v.name.toLowerCase().includes(q) || v.curator.toLowerCase().includes(q),
-		);
-	}, [search]);
+	const { data: pool, isLoading: poolLoading } = usePool();
+	const { data: balance } = useLenderBalance();
+	const { data: approvals } = useApprovalStatus();
+
+	const prepareDeposit = usePrepareDeposit();
+	const prepareWithdraw = usePrepareWithdraw();
+	const prepareApproval = usePrepareApproval();
+
+	const [depositAmt, setDepositAmt] = useState("");
+	const [withdrawAmt, setWithdrawAmt] = useState("");
+	const [txPending, setTxPending] = useState(false);
+
+	const handleDeposit = async () => {
+		if (!depositAmt || txPending) return;
+		setTxPending(true);
+
+		try {
+			if (approvals && !approvals.usdc.sufficient) {
+				const approveTx = await prepareApproval.mutateAsync({
+					token: "usdc",
+				});
+				await sendTx.mutateAsync({
+					to: approveTx.to as `0x${string}`,
+					data: approveTx.data as `0x${string}`,
+				});
+			}
+
+			const raw = String(Math.floor(Number(depositAmt) * 1e6));
+			const tx = await prepareDeposit.mutateAsync({ amount: raw });
+			await sendTx.mutateAsync({
+				to: tx.to as `0x${string}`,
+				data: tx.data as `0x${string}`,
+			});
+			setDepositAmt("");
+		} catch (err) {
+			console.error("Deposit failed:", err);
+		} finally {
+			setTxPending(false);
+		}
+	};
+
+	const handleWithdraw = async () => {
+		if (!withdrawAmt || txPending) return;
+		setTxPending(true);
+
+		try {
+			const raw = String(Math.floor(Number(withdrawAmt) * 1e6));
+			const tx = await prepareWithdraw.mutateAsync({ shares: raw });
+			await sendTx.mutateAsync({
+				to: tx.to as `0x${string}`,
+				data: tx.data as `0x${string}`,
+			});
+			setWithdrawAmt("");
+		} catch (err) {
+			console.error("Withdraw failed:", err);
+		} finally {
+			setTxPending(false);
+		}
+	};
 
 	return (
 		<div>
 			<div className="mb-8 flex items-center gap-3">
 				<h1 className="text-[40px] font-semibold tracking-tight text-foreground">
-					Vaults
+					Lend
 				</h1>
 				<Info className="size-5 text-muted-foreground/60" />
 			</div>
 
-			<div className="overflow-hidden rounded-[28px] border border-white/[0.06] bg-[#101011]">
-				<div className="flex flex-wrap items-center gap-4 border-b border-white/[0.04] px-8 py-5">
-					<label className="flex cursor-pointer items-center gap-2.5 text-[13px] font-medium text-foreground">
-						<span>In Wallet:</span>
-						<button
-							type="button"
-							role="switch"
-							aria-checked={inWallet}
-							onClick={() => setInWallet((prev) => !prev)}
-							className={`relative h-5 w-9 rounded-full transition-colors ${
-								inWallet ? "bg-primary" : "bg-[#2a2a2a]"
-							}`}
-						>
-							<span
-								className={`absolute top-0.5 h-4 w-4 rounded-full bg-white transition-transform ${
-									inWallet ? "translate-x-[18px]" : "translate-x-0.5"
-								}`}
-							/>
-						</button>
-					</label>
-
-					<button
-						type="button"
-						className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-[13px] font-medium text-foreground/80 transition-colors hover:bg-white/[0.04]"
-					>
-						<SlidersHorizontal className="size-4" />
-						Filter
-					</button>
-
-					<button
-						type="button"
-						className="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-[13px] font-medium text-foreground/80 transition-colors hover:bg-white/[0.04]"
-					>
-						<ArrowDown className="size-4" />
-						Sort by APY
-						<ChevronDown className="size-3.5 text-muted-foreground" />
-					</button>
-
-					<div className="ml-auto flex items-center gap-3">
-						<div className="relative">
-							<Search className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground/60" />
-							<input
-								type="text"
-								value={search}
-								onChange={(e) => setSearch(e.target.value)}
-								placeholder="Filter vaults"
-								className="h-10 w-[260px] rounded-full border border-white/[0.06] bg-[#1a1a1a] pr-4 pl-10 text-[13px] text-foreground placeholder:text-muted-foreground/60 focus:border-white/[0.12] focus:outline-none"
-							/>
-						</div>
-						<button
-							type="button"
-							className="flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-white/[0.04] hover:text-foreground"
-						>
-							<Settings className="size-4" />
-						</button>
-						<button
-							type="button"
-							className="flex size-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-white/[0.04] hover:text-foreground"
-						>
-							<Expand className="size-4" />
-						</button>
+			{poolLoading ? (
+				<div className="py-16 text-center text-muted-foreground">
+					Loading pool data...
+				</div>
+			) : pool ? (
+				<>
+					<div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+						<StatCard
+							label="Total Assets"
+							value={formatUsdc(pool.totalAssets)}
+						/>
+						<StatCard
+							label="Available Liquidity"
+							value={formatUsdc(pool.availableLiquidity)}
+						/>
+						<StatCard
+							label="Utilization"
+							value={formatUtil(pool.utilization)}
+						/>
+						<StatCard
+							label="Current Rate"
+							value={formatBps(pool.currentRate)}
+							sub="APY on deposits"
+						/>
 					</div>
-				</div>
 
-				<div className={`${COLUMN_CLASS} px-8 py-4`}>
-					<HeaderCell label="Vault" />
-					<HeaderCell label="Curator" />
-					<HeaderCell label="Total Supply" sortable />
-					<HeaderCell label="APY" />
-					<HeaderCell label="Collateral" />
-				</div>
-
-				<div>
-					{filtered.map((vault) => (
-						<VaultRow key={vault.id} vault={vault} />
-					))}
-					{filtered.length === 0 && (
-						<div className="px-8 py-16 text-center text-sm text-muted-foreground">
-							No vaults match your filter.
+					{token && balance && (
+						<div className="mt-6 rounded-[20px] border border-white/6 bg-[#141415] p-6">
+							<h2 className="mb-1 text-[16px] font-semibold text-foreground">
+								Your Position
+							</h2>
+							<p className="text-[13px] text-muted-foreground">
+								{formatUsdc(balance.value)} deposited ·{" "}
+								{Number(balance.shares).toLocaleString()} shares
+							</p>
 						</div>
 					)}
+
+					{isConnected && token && (
+						<div className="mt-6 grid gap-4 md:grid-cols-2">
+							<div className="rounded-[24px] border border-white/6 bg-[#141415] p-5">
+								<span className="text-[14px] font-semibold text-foreground/90">
+									Deposit USDC
+								</span>
+								<input
+									type="text"
+									inputMode="decimal"
+									value={depositAmt}
+									onChange={(e) => setDepositAmt(e.target.value)}
+									className="mt-3 w-full bg-transparent text-[32px] font-semibold tracking-tight text-foreground outline-none placeholder:text-muted-foreground/40"
+									placeholder="0.00"
+								/>
+								<button
+									type="button"
+									onClick={handleDeposit}
+									disabled={txPending || !depositAmt}
+									className="mt-4 w-full rounded-xl bg-primary py-3 text-[14px] font-semibold text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-50"
+								>
+									{txPending ? "Confirming..." : "Deposit"}
+								</button>
+							</div>
+
+							<div className="rounded-[24px] border border-white/6 bg-[#141415] p-5">
+								<span className="text-[14px] font-semibold text-foreground/90">
+									Withdraw
+								</span>
+								<input
+									type="text"
+									inputMode="decimal"
+									value={withdrawAmt}
+									onChange={(e) => setWithdrawAmt(e.target.value)}
+									className="mt-3 w-full bg-transparent text-[32px] font-semibold tracking-tight text-foreground outline-none placeholder:text-muted-foreground/40"
+									placeholder="0.00"
+								/>
+								<button
+									type="button"
+									onClick={handleWithdraw}
+									disabled={txPending || !withdrawAmt}
+									className="mt-4 w-full rounded-xl bg-[#1e1e1e] py-3 text-[14px] font-semibold text-foreground transition-colors hover:bg-[#262626] disabled:opacity-50"
+								>
+									{txPending ? "Confirming..." : "Withdraw"}
+								</button>
+							</div>
+						</div>
+					)}
+
+					{isConnected && !token && (
+						<div className="mt-6 rounded-[20px] border border-dashed border-white/6 bg-[#101011] p-10 text-center text-[15px] text-muted-foreground">
+							Sign in to deposit or withdraw.
+						</div>
+					)}
+				</>
+			) : (
+				<div className="py-16 text-center text-muted-foreground">
+					Failed to load pool data.
 				</div>
-			</div>
+			)}
 		</div>
 	);
 }
